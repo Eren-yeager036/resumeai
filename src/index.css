@@ -1,0 +1,161 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --primary: 0 200 83; /* #00C853 */
+  }
+
+  body {
+    @apply font-sans antialiased text-gray-900 bg-gray-50;
+    font-family: 'Poppins', system-ui, -apple-system, sans-serif;
+  }
+}
+
+@layer utilities {
+  /* Ultra smooth custom scrollbars */
+  ::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+  }
+  ::-webkit-scrollbar-track {
+    background: transparent;
+  }
+  ::-webkit-scrollbar-thumb {
+    @apply bg-gray-300 rounded-full border-2 border-transparent bg-clip-padding;
+  }
+  ::-webkit-scrollbar-thumb:hover {
+    @apply bg-gray-400;
+  }
+
+  /* Glassmorphism utilities */
+  .glass {
+    @apply bg-white/70 backdrop-blur-md border border-white/40 shadow-xl shadow-gray-200/50;
+  }
+  
+  .glass-dark {
+    @apply bg-gray-900/80 backdrop-blur-md border border-white/10 shadow-2xl;
+  }
+
+  /* Animated Mesh Gradient */
+  .bg-mesh {
+    background-color: #f3f4f6;
+    background-image: 
+      radial-gradient(at 40% 20%, hsla(145,100%,70%,0.2) 0px, transparent 50%),
+      radial-gradient(at 80% 0%, hsla(189,100%,56%,0.2) 0px, transparent 50%),
+      radial-gradient(at 0% 50%, hsla(355,100%,93%,0.3) 0px, transparent 50%),
+      radial-gradient(at 80% 50%, hsla(340,100%,76%,0.1) 0px, transparent 50%),
+      radial-gradient(at 0% 100%, hsla(22,100%,77%,0.2) 0px, transparent 50%),
+      radial-gradient(at 80% 100%, hsla(242,100%,70%,0.2) 0px, transparent 50%),
+      radial-gradient(at 0% 0%, hsla(343,100%,76%,0.1) 0px, transparent 50%);
+  }
+
+  .animation-delay-2000 {
+    animation-delay: 2s;
+  }
+  .animation-delay-4000 {
+    animation-delay: 4s;
+  }
+}
+
+.scrollbar-hide::-webkit-scrollbar {
+    display: none;
+}
+.scrollbar-hide {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+}
+
+@keyframes blob {
+  0% {
+    transform: translate(0px, 0px) scale(1);
+  }
+  33% {
+    transform: translate(30px, -50px) scale(1.1);
+  }
+  66% {
+    transform: translate(-20px, 20px) scale(0.9);
+  }
+  100% {
+    transform: translate(0px, 0px) scale(1);
+  }
+}
+
+.animate-blob {
+  animation: blob 7s infinite;
+}
+
+/* Comprehensive Print Media Query for Mobile & Desktop */
+@media print {
+  /* 1. Hide all DOM elements on page by default */
+  body * {
+    visibility: hidden !important;
+  }
+
+  /* 2. Completely remove UI chrome, navigation, form sidebars, headers, toasts */
+  header,
+  nav,
+  footer,
+  aside,
+  form,
+  .print\:hidden,
+  .no-print,
+  button,
+  input,
+  select,
+  textarea,
+  .toast,
+  [role="status"] {
+    display: none !important;
+  }
+
+  /* 3. Reset document root container */
+  html,
+  body,
+  #root {
+    background: white !important;
+    padding: 0 !important;
+    margin: 0 !important;
+    width: 210mm !important;
+    height: auto !important;
+    overflow: visible !important;
+    -webkit-print-color-adjust: exact !important;
+    print-color-adjust: exact !important;
+  }
+
+  /* 4. Target ONLY the printable resume element and force visibility & top-left positioning */
+  #printable-resume,
+  #printable-resume * {
+    visibility: visible !important;
+  }
+
+  #printable-resume {
+    display: block !important;
+    position: absolute !important;
+    left: 0 !important;
+    top: 0 !important;
+    width: 210mm !important;
+    max-width: 100% !important;
+    margin: 0 auto !important;
+    padding: 0 !important;
+    transform: none !important;
+    background: white !important;
+    box-shadow: none !important;
+    border: none !important;
+    z-index: 9999999 !important;
+  }
+
+  #printable-resume > div {
+    transform: none !important;
+    box-shadow: none !important;
+    border: none !important;
+    margin: 0 auto !important;
+    min-height: auto !important;
+    width: 100% !important;
+    max-width: 100% !important;
+  }
+}
+
